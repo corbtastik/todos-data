@@ -11,4 +11,4 @@ applications:
    - todos-messaging
   buildpack: java_buildpack
   env:
-    JAVA_OPTS: '-Deureka.client.serviceUrl.defaultZone=http://cloud-index.apps.pcf.corbscloud.io/eureka'
+    JAVA_OPTS: '-Deureka.client.serviceUrl.defaultZone=http://cloud-index.apps.pcf.corbscloud.io/eureka/'
