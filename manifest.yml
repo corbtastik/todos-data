@@ -3,11 +3,10 @@ applications:
 - name: todos-data
   memory: 1G
   routes:
-  - route: todos-data.apps.pcf.corbscloud.io
-  - route: todos-data-1-0-0-RELEASE.apps.pcf.corbscloud.io
-  path: target/todos-data-1.0.0.RELEASE.jar
+  - route: todos-data.cfapps.io
+  path: target/todos-data-1.0.0.SNAP.jar
   services:
-   - todos-data
+   - todos-db
    - todos-messaging
   buildpack: java_buildpack
   env:

@@ -1,0 +1,28 @@
+server:
+    port: 8003
+spring:
+    application:
+        name: todos-data
+    cloud:
+        stream:
+            bindings:
+                todoCreatedEvent:
+                    destination: todoCreatedEvent
+                todoDeletedEvent:
+                    destination: todoDeletedEvent
+                todoUpdatedEvent:
+                    destination: todoUpdatedEvent
+    flyway:
+        locations: 'classpath:/db/migration/h2'
+    h2:
+        console:
+            enabled: true
+    jpa:
+        hibernate:
+            ddl-auto: validate
+management:
+    endpoints:
+        web:
+            base-path: /ops
+            exposure:
+                include: '*'
