@@ -44,7 +44,7 @@ If for some reason you need to disable schema migration just override ``spring.f
 
 ### Todo(s) Data JPA
 
-One of the most underrated features of Spring is the Spring Data family.  Connecting Microservices to databases and stores is one of the cornerstone of the framework.  Giving developers a similar framework components to access data in a low touch manner.
+One of the most underrated features of Spring is the [Spring Data family](https://spring.io/projects/spring-data).  Connecting Microservices to databases and stores is one of the cornerstone of the framework.  Giving developers a similar framework components to access data in a low touch manner.
 
 Our model is the ``Todo`` and since we're using Flyway we're controlling the schema creation through migrations in ``src/main/resources/db/migrations``.  We could allow JPA to create the schema but we're choosing not too as most enterprise shops favor this level of separation.  This finer grained control comes with more responsibility on the developer.  We need to ensure our Object matches the schema, so as a safe guard we enable ``spring.jpa.hibernate.ddl-auto=validate`` which will halt-and-catch-fire should those two be outta wack.
 
