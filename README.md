@@ -80,10 +80,10 @@ data class TodoUpdatedEvent(val todo: TodoEntity)
 Todo(s) Data Microservice also uses ``spring-boot-starter-data-rest`` to blanked our data model in a REST API, one that support paging and sorting (whoop-whoop).
 
 ```kotlin
-    @Repository("todos")
-    interface TodosRepo : PagingAndSortingRepository<TodoEntity, Int> {
-        fun findByTitleOrderById(title:String): List<TodoEntity>
-    }
+@Repository("todos")
+interface TodosRepo : PagingAndSortingRepository<TodoEntity, Int> {
+    fun findByTitleOrderById(title:String): List<TodoEntity>
+}
 ```
 
 ### Build
@@ -265,19 +265,19 @@ Date: Sat, 23 Jun 2018 17:13:19 GMT
 After ``POST``ing a ``Todo`` you should see logging events for ``fireCreatedEvent`` and ``onCreatedEvent``.
 
 ```kotlin
-    fun fireCreatedEvent(todo: CreatedEvent) {
-        LOG.debug("todos.data fireCreatedEvent: " + todo.toString())
-        this.channels.fireCreatedEvent().send(GenericMessage<Any>(todo))
-    }
+fun fireCreatedEvent(todo: CreatedEvent) {
+    LOG.debug("todos.data fireCreatedEvent: " + todo.toString())
+    this.channels.fireCreatedEvent().send(GenericMessage<Any>(todo))
+}
 
-    @StreamListener("onCreatedEvent")
-    fun onCreatedEvent(event: CreatedEvent) {
-        if (ObjectUtils.isEmpty(event.todo)) {
-            return
-        }
-        LOG.debug("todos.data onCreatedEvent: " + event.todo.toString())
-        this.repo.save(event.todo)
+@StreamListener("onCreatedEvent")
+fun onCreatedEvent(event: CreatedEvent) {
+    if (ObjectUtils.isEmpty(event.todo)) {
+        return
     }
+    LOG.debug("todos.data onCreatedEvent: " + event.todo.toString())
+    this.repo.save(event.todo)
+}
 ```
 
 ```bash
