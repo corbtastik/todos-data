@@ -1,6 +1,6 @@
 ## Todo(s) Data
 
-Howdy and welcome...data, data and more data, the world is full of data.  This means inevitably you will need to implement Microservices to talk with Databases.  This repository contains a Microservice implemented in [Kotlin](https://kotlinlang.org) using Spring Boot and Spring Cloud.  It highlights several unique features from Spring and ties in with the [Todo(s) EcoSystem](https://github.com/corbtastik/todo-ecosystem) of Microservices, which are used for a larger demo set.  Checkout the [Todo(s) EcoSystem](https://github.com/corbtastik/todo-ecosystem) to see how all the Microservices fit together.
+Howdy and welcome...data, data and more data, the world is full of data.  Inevitably you'll need to implement Microservices to talk with Databases.  This repository contains a Microservice implemented in [Kotlin](https://kotlinlang.org) using Spring Boot and Spring Cloud.  It highlights several unique features from Spring and ties in with the [Todo(s) EcoSystem](https://github.com/corbtastik/todo-ecosystem) of Microservices, which are used for a larger demo set.  Checkout the [Todo(s) EcoSystem](https://github.com/corbtastik/todo-ecosystem) to see how all the Microservices fit together.
 
 ### Primary dependencies
 
