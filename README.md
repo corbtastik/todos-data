@@ -21,7 +21,7 @@ Kotlin is a statically typed open source language originated by [JetBrains](http
 
 Java is not going away anytime soon but as the future of software unfolds its highly likely another JVM language will close the gap.  Will the next generation of developers continue with Java or turn to something with less boilerplate?  No one has a crystal ball but Kotlin has a solid foundation and a nice start.  For one it's originated from JetBrains the maker of IntelliJ and they've been in the JVM market a long time and have the knowledge to implement something tight.  Kotlin is a nice fit for Microservices given both aim to simply software development.  I'd recommend giving it some attention and make an informed decision to use or not.  In any case I'd guess most Java developers will be pleasantly surprised using Kotlin...go ahead and give it a try, it's ``fun()``.
 
-# Flyway - Database Migrations
+### Flyway - Database Migrations
 
 This Microservice uses [Flyway](https://flywaydb.org/) to handle database schema versioning.  Using Flyway from Spring Boot starts with declaring a dependency on ``org.flywaydb:flyway-core`` in ``pom.xml``.  Spring Boot handles [Auto-Configuration](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-execute-flyway-database-migrations-on-startup) of Flyway on start-up when ``org.flyway:flyway-core`` is on the classpath.
 
