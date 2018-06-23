@@ -6,12 +6,14 @@ spring:
     cloud:
         stream:
             bindings:
-                todoCreatedEvent:
+                onCreatedEvent:
                     destination: todoCreatedEvent
-                todoDeletedEvent:
+                onDeletedEvent:
                     destination: todoDeletedEvent
-                todoUpdatedEvent:
+                onUpdatedEvent:
                     destination: todoUpdatedEvent
+                fireCreatedEvent:
+                    destination: todoCreatedEvent
     flyway:
         locations: 'classpath:/db/migration/h2'
     h2:
@@ -26,3 +28,6 @@ management:
             base-path: /ops
             exposure:
                 include: '*'
+logging:
+  level:
+    io.corbs: DEBUG
