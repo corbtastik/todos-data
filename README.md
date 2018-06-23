@@ -28,9 +28,7 @@ This Microservice uses [Flyway](https://flywaydb.org/) to handle database schema
 Todo(s) Data uses a default Spring Boot/Flyway setup and overrides ``spring.flyway.locations`` for different profiles.  The ``default`` profile ``application.yml`` sets the location for H2 schema changes while the ``cloud`` profile sets the location for MySQL.
 
 ```bash
-cmartin@corbett:~/dev/github/todos-data/src/main/resources|master⚡ 
-⇒  tree
-.
+> tree ./src/main/resources
 |____application-cloud.yml
 |____application.yml
 |____bootstrap.yml
