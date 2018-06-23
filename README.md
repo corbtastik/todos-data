@@ -70,10 +70,10 @@ Todo(s) Data Microservice also functions as a ``@StreamListener`` and will liste
 #### Sweet Sweet Kotlin data classes
 
 ```kotlin
-# look mom no semicolons 
-data class TodoCreatedEvent(val todo: TodoEntity)
-data class TodoDeletedEvent(val todo: TodoEntity)
-data class TodoUpdatedEvent(val todo: TodoEntity)
+# look mom no semicolons and 3 objects in 3 lines :)
+data class CreatedEvent(val todo: TodoEntity)
+data class DeletedEvent(val todo: TodoEntity)
+data class UpdatedEvent(val todo: TodoEntity)
 ```
 ### Todo(s) Data Rest API
 

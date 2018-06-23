@@ -12,9 +12,7 @@ import org.springframework.stereotype.Component
 import org.springframework.util.ObjectUtils
 
 data class CreatedEvent(val todo: TodoEntity)
-
 data class DeletedEvent(val todo: TodoEntity)
-
 data class UpdatedEvent(val todo: TodoEntity)
 
 @Component
