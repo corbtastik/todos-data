@@ -77,7 +77,7 @@ data class UpdatedEvent(val todo: TodoEntity)
 ```
 ### Todo(s) Data Rest API
 
-Todo(s) Data Microservice also uses ``spring-boot-starter-data-rest`` to blanked our data model in a REST API, one that support paging and sorting (whoop-whoop).
+Todo(s) Data Microservice also uses ``spring-boot-starter-data-rest`` to blanked our data model in a REST API, one that supports paging and sorting (whoop-whoop).
 
 ```kotlin
 @Repository("todos")
