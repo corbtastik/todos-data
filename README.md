@@ -109,7 +109,7 @@ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=9111,suspend=n \
 
 ### Verify
 
-By default Todo(s) Data starts up on ``localhost:8003`` and like all Microservices in Todo(s) EcoSystem actuators, Discovery Client and Config Client are baked into the app.
+By default Todo(s) Data starts up on ``localhost:8003`` and like all Microservices in [Todo(s) EcoSystem](https://github.com/corbtastik/todo-ecosystem) actuators, Discovery Client and Config Client are baked into the app.
 
 #### Check versioning
 
