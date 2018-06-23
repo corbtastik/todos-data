@@ -53,14 +53,14 @@ Simple objects is where Kotlin shines, ``data classes`` in Kotlin allow develope
 #### Kotlin data class
 
 ```kotlin
-    @Entity
-    @Table(name="todos")
-    data class TodoEntity(val title: String, val completed: Boolean) {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Int? = null
-        constructor() : this("",false)
-    }
+@Entity
+@Table(name="todos")
+data class TodoEntity(val title: String, val completed: Boolean) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Int? = null
+    constructor() : this("",false)
+}
 ```
 
 ### Todo(s) Data as a StreamListener
