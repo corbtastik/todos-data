@@ -48,7 +48,7 @@ One of the most underrated features of Spring is the [Spring Data family](https:
 
 Our model is the ``Todo`` and since we're using Flyway we're controlling the schema creation through migrations in ``src/main/resources/db/migrations``.  We could allow JPA to create the schema but we're choosing not too as most enterprise shops favor this level of separation.  This finer grained control comes with more responsibility on the developer.  We need to ensure our Object matches the schema, so as a safe guard we enable ``spring.jpa.hibernate.ddl-auto=validate`` which will [halt-and-catch-fire](https://en.wikipedia.org/wiki/Halt_and_Catch_Fire_(TV_series)) should those two be outta wack.
 
-Simple objects is where Kotlin shines, ``data classes`` in Kotlin allow developers to put together POKO(s) using a tight syntax.  Data Classes have built-in getter/setter support, you simply define your model as the definition of the class.  If the type is a ``val`` its read-only thus getter support is baked into the class, if its ``var`` getter and setters will be present.  To get something equivalent in Java we'd have to use [Lombok](https://projectlombok.org/) otherwise we'd have a lot of boilerplate code to write.
+Simple objects is where Kotlin shines, ``data classes`` in Kotlin allow developers to put together POKO(s) using a tight syntax.  Data Classes have built-in getter/setter support, you simply define your model as a `` data class``.  If the type is a ``val`` its read-only thus getter support is baked into the class, if its ``var`` getter and setters will be present.  To get something equivalent in Java we'd have to use [Lombok](https://projectlombok.org/) otherwise we'd have a lot of boilerplate code to write.
 
 #### Kotlin data class
 
