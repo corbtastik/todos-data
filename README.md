@@ -295,3 +295,141 @@ Open ``localhost:8003/h2-console`` and connect to H2 to view TODOS table.
     <img src="https://github.com/corbtastik/todos-images/raw/master/todos-data/h2console-event.png">
 </p>
 
+### Run on PAS
+
+[Pivotal Application Service](https://pivotal.io/platform/pivotal-application-service) is a modern runtime for Java, .NET, Node.js apps and many more, that provides a connected 5-star development to delivery experience.  PAS provides a cloud agnostic surface for delivering apps, apps such as Spring Boot Microservices.  Rarely in computing do we see this level of harmony between an application development framework and a platform.  Its supersonic dev to delivery with only Cloud Native principles as the interface :sunglasses:
+
+#### manifest.yml & vars.yml
+
+The only PAS specific artifacts in this code repo are ``manifest.yml`` and ``vars.yml``.  Modify ``vars.yml`` to add properties **specific to your PAS environment**. See [Variable Substitution](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#multi-manifests) for more information.  The gist is we only need to set values for our PAS deployment in ``vars.yml`` and pass that file to ``cf push``.
+
+The Todo(s) Data requires 2 environment variables:
+
+1. ``EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE`` - Service Discovery URL
+2. ``SPRING_CLOUD_CONFIG_URI`` - Spring Cloud Config Server URL
+
+and 2 services:
+
+1. todos-db - MySQL backing database
+2. todos-messaging - RabbitMQ messaging backbone
+
+#### manifest.yml
+
+```yml
+---
+applications:
+- name: ((app.name))
+  memory: ((app.memory))
+  routes:
+  - route: ((app.route))
+  path: ((app.artifact))
+  buildpack: java_buildpack
+  env:
+    ((env-key-1)): ((env-val-1))
+    ((env-key-2)): ((env-val-2))
+  services:
+   - ((srv-key-1))
+   - ((srv-key-2))
+```  
+
+#### vars.yml
+
+```yml
+app:
+  name: todos-data
+  artifact: target/todos-data-1.0.0.SNAP.jar
+  memory: 1G
+  route: todos-data.cfapps.io
+env-key-1: EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE
+env-val-1: http://cloud-index.cfapps.io/eureka
+env-key-2: SPRING_CLOUD_CONFIG_URI
+env-val-2: http://config-srv.cfapps.io
+srv-key-1: todos-db
+srv-key-2: todos-messaging
+```
+
+# cf push...awe yeah  
+
+Yes you can go from zero to hero with one command :)
+
+Make sure you're in the Todo(s) Data project root (folder with ``manifest.yml``) and cf push...awe yeah!
+
+```bash
+> cf push --vars-file ./vars.yml
+```
+
+```bash
+> cf apps
+Getting apps in org bubbles / space dev as ...
+OK
+
+name            requested state   instances   memory   disk   urls
+todos-data      started           1/1         1G       1G     todos-data.cfapps.io
+```
+
+### Verify on Cloud  
+
+Once Todo(s) Data is running, use an HTTP Client such as [cURL](https://curl.haxx.se/) or [HTTPie](https://httpie.org/) and call ``/ops/info`` to make sure the app has versioning.
+
+```bash
+> http todos-data.cfapps.io/ops/info  
+HTTP/1.1 200 OK
+Content-Type: application/vnd.spring-boot.actuator.v2+json;charset=UTF-8
+X-Vcap-Request-Id: bc7b7d98-df39-4edf-644e-343cd04f7353
+
+{
+    "build": {
+        "artifact": "todos-data",
+        "group": "io.corbs",
+        "name": "todos-data",
+        "time": "2018-06-25T19:19:39.577Z",
+        "version": "1.0.0.SNAP"
+    }
+}
+```
+
+#### Create a cloudy Todo
+
+```bash
+> http todos-data.cfapps.io/todoEntities/ title="make bacon pancakes"
+HTTP/1.1 201 Created
+Content-Type: application/json;charset=UTF-8
+Location: http://todos-data.cfapps.io/todoEntities/12
+X-Vcap-Request-Id: e425184a-7460-40ae-585e-91b5563355a1
+
+{
+    "_links": {
+        "self": {
+            "href": "http://todos-data.cfapps.io/todoEntities/12"
+        },
+        "todoEntity": {
+            "href": "http://todos-data.cfapps.io/todoEntities/12"
+        }
+    },
+    "completed": false,
+    "title": "make bacon pancakes"
+}
+```  
+
+#### Retrieve one cloudy Todo
+
+```bash
+> http todos-api.cfapps.io/todos/12
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+X-Vcap-Request-Id: 6f3c30bd-ab2b-4fd2-61a8-bd0bbe9a585c
+
+{
+    "completed": false,
+    "id": 12,
+    "title": "make bacon pancakes"
+}
+```
+
+### Stay Frosty  
+
+#### Adventure Time - [take some bacon and put it in a pancake!](https://www.youtube.com/watch?v=cUYSGojUuAU)  
+
+### References
+
+* [Eureka in 10 mins](https://blog.asarkar.org/technical/netflix-eureka/)

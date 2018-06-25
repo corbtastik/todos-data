@@ -1,0 +1,11 @@
+app:
+  name: todos-data
+  artifact: target/todos-data-1.0.0.SNAP.jar
+  memory: 1G
+  route: todos-data.cfapps.io
+env-key-1: EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE
+env-val-1: http://cloud-index.cfapps.io/eureka
+env-key-2: SPRING_CLOUD_CONFIG_URI
+env-val-2: http://config-srv.cfapps.io
+srv-key-1: todos-db
+srv-key-2: todos-messaging

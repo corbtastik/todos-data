@@ -1,13 +1,14 @@
 ---
 applications:
-- name: todos-data
-  memory: 1G
+- name: ((app.name))
+  memory: ((app.memory))
   routes:
-  - route: todos-data.cfapps.io
-  path: target/todos-data-1.0.0.SNAP.jar
-  services:
-   - todos-db
-   - todos-messaging
+  - route: ((app.route))
+  path: ((app.artifact))
   buildpack: java_buildpack
   env:
-    JAVA_OPTS: '-Deureka.client.serviceUrl.defaultZone=http://cloud-index.apps.pcf.corbscloud.io/eureka/'
+    ((env-key-1)): ((env-val-1))
+    ((env-key-2)): ((env-val-2))
+  services:
+   - ((srv-key-1))
+   - ((srv-key-2))
