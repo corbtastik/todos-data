@@ -6,6 +6,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.annotation.Input
 import org.springframework.cloud.stream.annotation.Output
 import org.springframework.cloud.stream.annotation.StreamListener
+import org.springframework.messaging.MessageChannel
 import org.springframework.messaging.SubscribableChannel
 import org.springframework.messaging.support.GenericMessage
 import org.springframework.stereotype.Component
@@ -34,7 +35,7 @@ class TodosMessaging(
         fun onDeletedEvent(): SubscribableChannel
 
         @Output
-        fun fireCreatedEvent(): SubscribableChannel
+        fun fireCreatedEvent(): MessageChannel
     }
 
     fun fireCreatedEvent(todo: CreatedEvent) {
