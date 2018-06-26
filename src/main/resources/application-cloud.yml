@@ -1,5 +1,15 @@
-# Flyway schema control
 spring:
+  port: ${vcap.application.port:8080}
   flyway:
     locations: 'classpath:db/migration/mysql'
- 
+eureka:
+  instance:
+    instanceId: ${vcap.application.instance_id}
+    hostname: ${vcap.application.uris[0]}
+    non-secure-port: 80
+    home-page-url: http://${vcap.application.uris[0]}
+    status-page-url: http://${vcap.application.uris[0]}/ops/info
+    health-check-url: http://${vcap.application.uris[0]}/ops/health
+  client:
+    serviceUrl:
+      defaultZone: 'http://cloud-index.cfapps.io/eureka/'

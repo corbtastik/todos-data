@@ -134,11 +134,9 @@ Transfer-Encoding: chunked
 #### Check root API
 
 ```bash
->  http :8003/        
-HTTP/1.1 200 
+>  http :8003/  
+HTTP/1.1 200  
 Content-Type: application/hal+json;charset=UTF-8
-Date: Fri, 22 Jun 2018 19:54:31 GMT
-Transfer-Encoding: chunked
 
 {
     "_links": {
