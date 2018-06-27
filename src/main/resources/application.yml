@@ -7,13 +7,13 @@ spring:
         stream:
             bindings:
                 onCreatedEvent:
-                    destination: todoCreatedEvent
+                    destination: createdEvent
                 onDeletedEvent:
-                    destination: todoDeletedEvent
+                    destination: deletedEvent
                 onUpdatedEvent:
-                    destination: todoUpdatedEvent
+                    destination: updatedEvent
                 fireCreatedEvent:
-                    destination: todoCreatedEvent
+                    destination: createdEvent
     flyway:
         locations: 'classpath:/db/migration/h2'
     h2:
