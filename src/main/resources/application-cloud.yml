@@ -1,5 +1,4 @@
 spring:
-  port: ${vcap.application.port:8080}
   flyway:
     locations: 'classpath:db/migration/mysql'
 eureka:
@@ -12,4 +11,6 @@ eureka:
     health-check-url: http://${vcap.application.uris[0]}/ops/health
   client:
     serviceUrl:
-      defaultZone: 'http://cloud-index.cfapps.io/eureka/'
+      defaultZone: 'https://cloud-index.cfapps.io/eureka/'
+server:
+  port: ${vcap.application.port:8080}
