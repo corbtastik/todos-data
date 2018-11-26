@@ -11,6 +11,7 @@ import org.springframework.messaging.SubscribableChannel
 import org.springframework.messaging.support.GenericMessage
 import org.springframework.stereotype.Component
 import org.springframework.util.ObjectUtils
+import org.springframework.util.StringUtils
 
 data class CreatedEvent(val todo: TodoEntity)
 data class DeletedEvent(val todo: TodoEntity)
@@ -57,8 +58,18 @@ class TodosMessaging(
         if (ObjectUtils.isEmpty(event.todo.id)) {
             return
         }
-        LOG.debug("todos.data onUpdatedEvent: " + event.todo.toString())
-        this.repo.save(event.todo)
+        val result = repo.findById(event.todo.id!!)
+        if(result.isPresent) {
+            val current = result.get()
+            if(!ObjectUtils.isEmpty(event.todo.completed)) {
+                current.completed = event.todo.completed
+            }
+            if (!StringUtils.isEmpty(event.todo.title)) {
+                current.title = event.todo.title
+            }
+            LOG.debug("todos.data onUpdatedEvent: todo.id=${current.id}, " + event.todo.toString())
+            this.repo.save(event.todo)
+        }
     }
 
     @StreamListener("onDeletedEvent")
