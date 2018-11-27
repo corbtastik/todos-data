@@ -1,0 +1,14 @@
+---
+applications:
+- name: todos-data
+  memory: 1G
+  routes:
+  - route: corbs-todos-data.cfapps.io
+  path: target/todos-data-1.0.0.SNAP.jar
+  buildpack: java_buildpack
+  env:
+    EUREKA_CLIENT_ENABLED: false
+    SPRING_CLOUD_CONFIG_ENABLED: false
+  services:
+   - todos-data
+   - todos-messaging
