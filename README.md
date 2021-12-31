@@ -178,10 +178,6 @@ Transfer-Encoding: chunked
 
 Open ``localhost:8003/h2-console`` and connect to H2 to view TODOS table.
 
-<p align="center">
-    <img src="https://github.com/corbtastik/todos-images/raw/master/todos-data/h2console.png">
-</p>
-
 **Retrieve**
 
 ```bash
